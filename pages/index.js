@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import Link from 'next/link'
 
 const Home = () => (
   <div className="container">
@@ -14,6 +15,9 @@ const Home = () => (
 
       <p className="description">
         Get started by editing <code>pages/index.js</code>
+      </p>
+      <p className="description">
+        Go to the <Link href="/about"><a>about page</a></Link>
       </p>
 
       <div className="grid">
