@@ -14,7 +14,7 @@ class MyDocument extends Document {
       <Html>
         <Head />
         <body>
-          {cdnDependencies.map(({ url }) => (
+          {Object.values(cdnDependencies).map(({ url }) => (
             <script key={url} src={url} />
           ))}
           <Main />

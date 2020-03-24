@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import Link from 'next/link'
+import axios from 'axios'
 
 const About = () => (
   <div className="container">
@@ -12,6 +13,7 @@ const About = () => (
       <h1 className="title">
         Go back to the <Link href="/"><a>home page</a></Link>
       </h1>
+      <p>{axios.create.toString()}</p>
     </main>
   </div>
 )
