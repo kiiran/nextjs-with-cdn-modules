@@ -22,21 +22,22 @@ const cdnDependencies =
         return acc
       }, {})
 
-const cdnResolver = (...args) => {
-  const pkgInfo = moduleToCdn(...args)
-  if (pkgInfo) cdnDependencies[pkgInfo.name] = pkgInfo
-  return pkgInfo
-}
-
 module.exports = {
+  serverRuntimeConfig: {
+    cdnDependencies,
+  },
   webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
     config.plugins.push(
-      new DynamicCdnWebpackPlugin({ env, resolver: cdnResolver }),
+      new DynamicCdnWebpackPlugin({
+        env,
+        resolver: (...args) => {
+          const pkgInfo = moduleToCdn(...args)
+          if (pkgInfo) cdnDependencies[pkgInfo.name] = pkgInfo
+          return pkgInfo
+        },
+      }),
     )
 
     return config
-  },
-  serverRuntimeConfig: {
-    cdnDependencies,
   },
 }
